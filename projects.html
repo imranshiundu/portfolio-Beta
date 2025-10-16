@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Imran Shiundu | Full Stack Developer</title>
+    <meta name="description" content="Explore Imran Shiundu's portfolio of web applications, software projects, and startup solutions built with modern technologies.">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+    <link rel="preload" href="js/projects.js" as="script">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/project.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <span class="logo-text">Imran Shiundu</span>
+                </a>
+            </div>
+            
+            <ul class="nav-menu" role="menubar">
+                <li class="nav-item" role="none">
+                    <a href="index.html" class="nav-link" role="menuitem">Home</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="index.html#about" class="nav-link" role="menuitem">About</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="index.html#experience" class="nav-link" role="menuitem">Experience</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="projects.html" class="nav-link active" role="menuitem" aria-current="page">Projects</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="blog.html" class="nav-link" role="menuitem">Blog</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="contact.html" class="nav-link" role="menuitem">Contact</a>
+                </li>
+            </ul>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                    <i class="fas fa-sun" aria-hidden="true"></i>
+                </button>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Projects Header -->
+    <section class="projects-header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="page-title">Project Portfolio</h1>
+                <p class="page-subtitle" id="projects-subtitle">
+                    <!-- Dynamic from API -->
+                    <div class="loading-skeleton skeleton-text"></div>
+                </p>
+                
+                <!-- Projects Stats -->
+                <div class="projects-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="total-projects">0</span>
+                        <span class="stat-label">Total Projects</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="completed-projects">0</span>
+                        <span class="stat-label">Completed</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="technologies-count">0</span>
+                        <span class="stat-label">Technologies</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Filter & Search -->
+    <section class="projects-controls" role="search">
+        <div class="container">
+            <div class="controls-grid">
+                <!-- Search Box -->
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search search-icon" aria-hidden="true"></i>
+                        <input type="text" 
+                               id="projects-search" 
+                               class="search-input" 
+                               placeholder="Search projects..." 
+                               aria-label="Search projects">
+                        <button class="search-clear" id="searchClear" aria-label="Clear search">
+                            <i class="fas fa-times" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filter Controls -->
+                <div class="filter-controls">
+                    <!-- Category Filter -->
+                    <div class="filter-group">
+                        <label for="category-filter" class="filter-label">Category</label>
+                        <select id="category-filter" class="filter-select" aria-label="Filter by category">
+                            <option value="all">All Categories</option>
+                            <option value="frontend">Frontend</option>
+                            <option value="backend">Backend</option>
+                            <option value="fullstack">Full Stack</option>
+                            <option value="mobile">Mobile</option>
+                            <option value="startup">Startup</option>
+                        </select>
+                    </div>
+
+                    <!-- Technology Filter -->
+                    <div class="filter-group">
+                        <label for="tech-filter" class="filter-label">Technology</label>
+                        <select id="tech-filter" class="filter-select" aria-label="Filter by technology">
+                            <option value="all">All Technologies</option>
+                            <!-- Dynamic from API -->
+                        </select>
+                    </div>
+
+                    <!-- Sort Options -->
+                    <div class="filter-group">
+                        <label for="sort-by" class="filter-label">Sort By</label>
+                        <select id="sort-by" class="filter-select" aria-label="Sort projects">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="name">Project Name</option>
+                            <option value="featured">Featured First</option>
+                        </select>
+                    </div>
+
+                    <!-- View Toggle -->
+                    <div class="view-toggle">
+                        <button class="view-btn active" id="gridView" aria-label="Grid view">
+                            <i class="fas fa-th" aria-hidden="true"></i>
+                        </button>
+                        <button class="view-btn" id="listView" aria-label="List view">
+                            <i class="fas fa-list" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Filters Display -->
+            <div class="active-filters" id="activeFilters">
+                <!-- Dynamic active filters will appear here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="projects-main" role="main" aria-labelledby="projects-heading">
+        <div class="container">
+            <!-- Loading State -->
+            <div class="loading-state" id="projectsLoading">
+                <div class="loading-spinner"></div>
+                <p>Loading projects...</p>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="projectsEmpty" hidden>
+                <i class="fas fa-folder-open empty-icon" aria-hidden="true"></i>
+                <h3>No projects found</h3>
+                <p>Try adjusting your filters or search terms</p>
+                <button class="btn btn-primary" id="resetFilters">Reset Filters</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="projects-container" id="projectsContainer">
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Dynamic projects will be inserted here -->
+                </div>
+
+                <!-- Projects List View (Hidden by default) -->
+                <div class="projects-list" id="projectsList" hidden>
+                    <!-- Dynamic list view will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination" id="pagination" hidden>
+                <button class="pagination-btn" id="prevPage" aria-label="Previous page">
+                    <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                </button>
+                
+                <div class="pagination-numbers" id="paginationNumbers">
+                    <!-- Dynamic page numbers -->
+                </div>
+                
+                <button class="pagination-btn" id="nextPage" aria-label="Next page">
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div class="modal" id="projectModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 id="modalTitle" class="modal-title">Project Details</h2>
+                <button class="modal-close" id="modalClose" aria-label="Close modal">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            
+            <div class="modal-content" id="modalContent">
+                <!-- Dynamic modal content -->
+            </div>
+            
+            <div class="modal-footer">
+                <div class="modal-actions" id="modalActions">
+                    <!-- Dynamic action buttons -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="projects-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Have a Project in Mind?</h2>
+                <p class="cta-description">
+                    Let's collaborate to bring your ideas to life with cutting-edge technology and innovative solutions.
+                </p>
+                <div class="cta-actions">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                        Start a Project
+                    </a>
+                    <a href="index.html" class="btn btn-secondary">
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                        Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <span class="logo-text">Imran Shiundu</span>
+                    </div>
+                    <p class="footer-description" id="footer-description">
+                        <!-- Dynamic from API -->
+                        <div class="loading-skeleton skeleton-text"></div>
+                    </p>
+                    <div class="footer-social" id="social-links">
+                        <!-- Dynamic social links from API -->
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-title">Navigation</h4>
+                        <ul class="footer-list">
+                            <li><a href="index.html" class="footer-link">Home</a></li>
+                            <li><a href="index.html#about" class="footer-link">About</a></li>
+                            <li><a href="index.html#experience" class="footer-link">Experience</a></li>
+                            <li><a href="projects.html" class="footer-link">Projects</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4 class="footer-title">Connect</h4>
+                        <ul class="footer-list">
+                            <li><a href="blog.html" class="footer-link">Blog</a></li>
+                            <li><a href="contact.html" class="footer-link">Contact</a></li>
+                            <li><a href="#" class="footer-link">Resume</a></li>
+                            <li><a href="#" class="footer-link">GitHub</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>&copy; 2025 Imran Shiundu. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/projects.js"></script>
+    <script src="js/dark-mode.js"></script>
+</body>
+</html>

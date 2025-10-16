@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imran Shiundu - Full Stack Developer & Startup Founder</title>
+    <meta name="description" content="Imran Shiundu - Full Stack Developer specializing in web applications, software development, and startup solutions.">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home" class="logo-link">
+                    <span class="logo-text">Imran Shiundu</span>
+                </a>
+            </div>
+            
+            <ul class="nav-menu" role="menubar">
+                <li class="nav-item" role="none">
+                    <a href="#home" class="nav-link" role="menuitem">Home</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="#about" class="nav-link" role="menuitem">About</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="#experience" class="nav-link" role="menuitem">Experience</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="projects.html" class="nav-link" role="menuitem">Projects</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="blog.html" class="nav-link" role="menuitem">Blog</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="#contact" class="nav-link" role="menuitem">Contact</a>
+                </li>
+            </ul>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                    <i class="fas fa-sun" aria-hidden="true"></i>
+                </button>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero" role="banner">
+        <div class="hero-background" id="particles-js"></div>
+        
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-text">kood/Jõhvi Scholar</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    <span class="title-line" id="hero-name">Imran Shiundu</span>
+                    <span class="title-subline" id="hero-title">Full Stack Developer</span>
+                </h1>
+                
+                <p class="hero-description" id="hero-description">
+                    <!-- Dynamic content from API -->
+                    <div class="loading-skeleton skeleton-text"></div>
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="projects.html" class="btn btn-primary">
+                        <i class="fas fa-code" aria-hidden="true"></i>
+                        View Projects
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                        Get In Touch
+                    </a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="projects-count">0</span>
+                        <span class="stat-label">Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="startups-count">0</span>
+                        <span class="stat-label">Startups</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="experience-years">0</span>
+                        <span class="stat-label">Years</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="floating-elements">
+                    <!-- Dynamic tech icons from API -->
+                    <div class="floating-element element-1">
+                        <i class="fab fa-js-square" aria-hidden="true"></i>
+                    </div>
+                    <div class="floating-element element-2">
+                        <i class="fab fa-laravel" aria-hidden="true"></i>
+                    </div>
+                    <div class="floating-element element-3">
+                        <i class="fab fa-java" aria-hidden="true"></i>
+                    </div>
+                </div>
+                
+                <div class="live-editor-container">
+                    <div class="live-editor">
+                        <div class="editor-header">
+                            <span class="editor-dot dot-red"></span>
+                            <span class="editor-dot dot-yellow"></span>
+                            <span class="editor-dot dot-green"></span>
+                            <span class="editor-title">skills.js</span>
+                        </div>
+                        <div class="editor-content">
+                            <pre><code class="language-javascript" id="live-code">
+// Loading skills from API...
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about" role="region" aria-labelledby="about-heading">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="about-heading" class="section-title">Technical Expertise</h2>
+                <p class="section-subtitle">Crafting digital experiences with modern technologies</p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-content">
+                    <h3 class="about-title" id="about-main-title">Building the Future</h3>
+                    <p class="about-text" id="about-description">
+                        <div class="loading-skeleton skeleton-text"></div>
+                    </p>
+                    
+                    <div class="education-highlight">
+                        <div class="education-badge">
+                            <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                            <span id="education-title">kood/Jõhvi Scholar</span>
+                        </div>
+                        <p class="education-text" id="education-description">
+                            <div class="loading-skeleton skeleton-text"></div>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="skills-container" id="skills-container">
+                    <!-- Dynamic skills from API -->
+                    <div class="loading-skeleton skeleton-card"></div>
+                    <div class="loading-skeleton skeleton-card"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section id="experience" class="experience" role="region" aria-labelledby="experience-heading">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="experience-heading" class="section-title">Journey & Milestones</h2>
+                <p class="section-subtitle">From code to leadership and entrepreneurship</p>
+            </div>
+            
+            <div class="timeline" id="experience-timeline">
+                <!-- Dynamic timeline from API -->
+                <div class="loading-skeleton skeleton-timeline"></div>
+                <div class="loading-skeleton skeleton-timeline"></div>
+                <div class="loading-skeleton skeleton-timeline"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section class="featured-projects" role="region" aria-labelledby="projects-heading">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="projects-heading" class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Showcasing technical innovation and creative solutions</p>
+            </div>
+            
+            <div class="projects-grid" id="featured-projects-grid">
+                <!-- Dynamic featured projects from API -->
+                <div class="loading-skeleton skeleton-card"></div>
+                <div class="loading-skeleton skeleton-card"></div>
+                <div class="loading-skeleton skeleton-card"></div>
+            </div>
+            
+            <div class="projects-cta">
+                <a href="projects.html" class="btn btn-outline">
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    View All Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section id="contact" class="contact-cta" role="region" aria-labelledby="contact-heading">
+        <div class="container">
+            <div class="cta-content">
+                <h2 id="contact-heading" class="cta-title">Ready to Build Something Amazing?</h2>
+                <p class="cta-description">
+                    Let's discuss your project and turn ideas into impactful digital solutions.
+                </p>
+                <div class="cta-actions">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        Start Conversation
+                    </a>
+                    <a href="tel:+254706858992" class="btn btn-secondary">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        Call Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <span class="logo-text">Imran Shiundu</span>
+                    </div>
+                    <p class="footer-description" id="footer-description">
+                        <!-- Dynamic from API -->
+                        <div class="loading-skeleton skeleton-text"></div>
+                    </p>
+                    <div class="footer-social" id="social-links">
+                        <!-- Dynamic social links from API -->
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-title">Navigation</h4>
+                        <ul class="footer-list">
+                            <li><a href="#home" class="footer-link">Home</a></li>
+                            <li><a href="#about" class="footer-link">About</a></li>
+                            <li><a href="#experience" class="footer-link">Experience</a></li>
+                            <li><a href="projects.html" class="footer-link">Projects</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4 class="footer-title">Connect</h4>
+                        <ul class="footer-list">
+                            <li><a href="blog.html" class="footer-link">Blog</a></li>
+                            <li><a href="contact.html" class="footer-link">Contact</a></li>
+                            <li><a href="#" class="footer-link">Resume</a></li>
+                            <li><a href="#" class="footer-link">GitHub</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>&copy; 2025 Imran Shiundu. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/dark-mode.js"></script>
+</body>
+</html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Imran Shiundu | Tech Insights & Tutorials</title>
+    <meta name="description" content="Read Imran Shiundu's technical blog featuring web development tutorials, project case studies, and insights into software engineering and startup building.">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+    <link rel="preload" href="js/blog.js" as="script">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/blog.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <span class="logo-text">Imran Shiundu</span>
+                </a>
+            </div>
+            
+            <ul class="nav-menu" role="menubar">
+                <li class="nav-item" role="none">
+                    <a href="index.html" class="nav-link" role="menuitem">Home</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="index.html#about" class="nav-link" role="menuitem">About</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="index.html#experience" class="nav-link" role="menuitem">Experience</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="projects.html" class="nav-link" role="menuitem">Projects</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="blog.html" class="nav-link active" role="menuitem" aria-current="page">Blog</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="contact.html" class="nav-link" role="menuitem">Contact</a>
+                </li>
+            </ul>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                    <i class="fas fa-sun" aria-hidden="true"></i>
+                </button>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Header -->
+    <section class="blog-header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="page-title">Tech Blog</h1>
+                <p class="page-subtitle" id="blog-subtitle">
+                    <!-- Dynamic from API -->
+                    <div class="loading-skeleton skeleton-text"></div>
+                </p>
+                
+                <!-- Blog Stats -->
+                <div class="blog-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="total-posts">0</span>
+                        <span class="stat-label">Articles</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="total-categories">0</span>
+                        <span class="stat-label">Categories</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="total-tags">0</span>
+                        <span class="stat-label">Topics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Controls -->
+    <section class="blog-controls" role="search">
+        <div class="container">
+            <div class="controls-grid">
+                <!-- Search Box -->
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search search-icon" aria-hidden="true"></i>
+                        <input type="text" 
+                               id="blog-search" 
+                               class="search-input" 
+                               placeholder="Search articles..." 
+                               aria-label="Search blog posts">
+                        <button class="search-clear" id="blogSearchClear" aria-label="Clear search">
+                            <i class="fas fa-times" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filter Controls -->
+                <div class="filter-controls">
+                    <!-- Category Filter -->
+                    <div class="filter-group">
+                        <label for="blog-category-filter" class="filter-label">Category</label>
+                        <select id="blog-category-filter" class="filter-select" aria-label="Filter by category">
+                            <option value="all">All Categories</option>
+                            <!-- Dynamic categories from API -->
+                        </select>
+                    </div>
+
+                    <!-- Tag Filter -->
+                    <div class="filter-group">
+                        <label for="blog-tag-filter" class="filter-label">Topic</label>
+                        <select id="blog-tag-filter" class="filter-select" aria-label="Filter by tag">
+                            <option value="all">All Topics</option>
+                            <!-- Dynamic tags from API -->
+                        </select>
+                    </div>
+
+                    <!-- Sort Options -->
+                    <div class="filter-group">
+                        <label for="blog-sort-by" class="filter-label">Sort By</label>
+                        <select id="blog-sort-by" class="filter-select" aria-label="Sort articles">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="popular">Most Popular</option>
+                            <option value="title">Title A-Z</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Filters Display -->
+            <div class="active-filters" id="blogActiveFilters">
+                <!-- Dynamic active filters will appear here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Layout -->
+    <section class="blog-main" role="main">
+        <div class="container">
+            <div class="blog-layout">
+                <!-- Main Content -->
+                <div class="blog-content">
+                    <!-- Featured Post -->
+                    <div class="featured-section" id="featuredPostSection">
+                        <h2 class="section-title">Featured Article</h2>
+                        <div class="featured-post" id="featuredPost">
+                            <!-- Dynamic featured post -->
+                            <div class="loading-skeleton skeleton-card-large"></div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Posts -->
+                    <div class="recent-posts-section">
+                        <div class="section-header">
+                            <h2 class="section-title">Latest Articles</h2>
+                            <div class="view-toggle">
+                                <button class="view-btn active" id="blogGridView" aria-label="Grid view">
+                                    <i class="fas fa-th" aria-hidden="true"></i>
+                                </button>
+                                <button class="view-btn" id="blogListView" aria-label="List view">
+                                    <i class="fas fa-list" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Loading State -->
+                        <div class="loading-state" id="postsLoading">
+                            <div class="loading-spinner"></div>
+                            <p>Loading articles...</p>
+                        </div>
+
+                        <!-- Empty State -->
+                        <div class="empty-state" id="postsEmpty" hidden>
+                            <i class="fas fa-newspaper empty-icon" aria-hidden="true"></i>
+                            <h3>No articles found</h3>
+                            <p>Try adjusting your filters or search terms</p>
+                            <button class="btn btn-primary" id="blogResetFilters">Reset Filters</button>
+                        </div>
+
+                        <!-- Posts Grid -->
+                        <div class="posts-container" id="postsContainer">
+                            <div class="posts-grid" id="postsGrid">
+                                <!-- Dynamic posts will be inserted here -->
+                            </div>
+
+                            <!-- Posts List View (Hidden by default) -->
+                            <div class="posts-list" id="postsList" hidden>
+                                <!-- Dynamic list view will be inserted here -->
+                            </div>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="pagination" id="blogPagination" hidden>
+                            <button class="pagination-btn" id="blogPrevPage" aria-label="Previous page">
+                                <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                            </button>
+                            
+                            <div class="pagination-numbers" id="blogPaginationNumbers">
+                                <!-- Dynamic page numbers -->
+                            </div>
+                            
+                            <button class="pagination-btn" id="blogNextPage" aria-label="Next page">
+                                <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="blog-sidebar" role="complementary">
+                    <!-- About Blog Widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">About This Blog</h3>
+                        <div class="widget-content">
+                            <p id="blog-description">
+                                <!-- Dynamic from API -->
+                                <div class="loading-skeleton skeleton-text"></div>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Categories Widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">Categories</h3>
+                        <div class="widget-content">
+                            <div class="categories-list" id="categoriesList">
+                                <!-- Dynamic categories from API -->
+                                <div class="loading-skeleton skeleton-text"></div>
+                                <div class="loading-skeleton skeleton-text"></div>
+                                <div class="loading-skeleton skeleton-text"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Popular Tags -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">Popular Topics</h3>
+                        <div class="widget-content">
+                            <div class="tags-cloud" id="tagsCloud">
+                                <!-- Dynamic tags from API -->
+                                <div class="loading-skeleton skeleton-tag"></div>
+                                <div class="loading-skeleton skeleton-tag"></div>
+                                <div class="loading-skeleton skeleton-tag"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Posts Widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">Recent Articles</h3>
+                        <div class="widget-content">
+                            <div class="recent-posts-list" id="sidebarRecentPosts">
+                                <!-- Dynamic recent posts -->
+                                <div class="loading-skeleton skeleton-text"></div>
+                                <div class="loading-skeleton skeleton-text"></div>
+                                <div class="loading-skeleton skeleton-text"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter Signup -->
+                    <div class="sidebar-widget newsletter-widget">
+                        <h3 class="widget-title">Stay Updated</h3>
+                        <div class="widget-content">
+                            <p>Get the latest articles and tutorials directly in your inbox.</p>
+                            <form class="newsletter-form" id="newsletterForm">
+                                <div class="form-group">
+                                    <input type="email" 
+                                           class="form-input" 
+                                           placeholder="Your email address" 
+                                           aria-label="Email address"
+                                           required>
+                                    <button type="submit" class="btn btn-primary btn-small">
+                                        Subscribe
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- Individual Blog Post Modal -->
+    <div class="modal blog-modal" id="blogPostModal" role="dialog" aria-labelledby="blogModalTitle" aria-hidden="true">
+        <div class="modal-overlay" id="blogModalOverlay"></div>
+        <div class="modal-container blog-modal-container">
+            <button class="modal-close blog-modal-close" id="blogModalClose" aria-label="Close article">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+            
+            <article class="blog-post-full" id="blogPostFull">
+                <!-- Dynamic full post content -->
+            </article>
+            
+            <div class="blog-post-navigation" id="blogPostNavigation">
+                <!-- Dynamic next/previous post links -->
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="blog-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Want to Collaborate?</h2>
+                <p class="cta-description">
+                    Interested in technical writing, guest posts, or discussing software development topics?
+                    Let's connect and share knowledge.
+                </p>
+                <div class="cta-actions">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                        Get In Touch
+                    </a>
+                    <a href="projects.html" class="btn btn-secondary">
+                        <i class="fas fa-code" aria-hidden="true"></i>
+                        View Projects
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <span class="logo-text">Imran Shiundu</span>
+                    </div>
+                    <p class="footer-description" id="footer-description">
+                        <!-- Dynamic from API -->
+                        <div class="loading-skeleton skeleton-text"></div>
+                    </p>
+                    <div class="footer-social" id="social-links">
+                        <!-- Dynamic social links from API -->
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-title">Navigation</h4>
+                        <ul class="footer-list">
+                            <li><a href="index.html" class="footer-link">Home</a></li>
+                            <li><a href="index.html#about" class="footer-link">About</a></li>
+                            <li><a href="index.html#experience" class="footer-link">Experience</a></li>
+                            <li><a href="projects.html" class="footer-link">Projects</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4 class="footer-title">Connect</h4>
+                        <ul class="footer-list">
+                            <li><a href="blog.html" class="footer-link">Blog</a></li>
+                            <li><a href="contact.html" class="footer-link">Contact</a></li>
+                            <li><a href="#" class="footer-link">Resume</a></li>
+                            <li><a href="#" class="footer-link">GitHub</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">Blog Categories</h4>
+                        <ul class="footer-list" id="footer-categories">
+                            <!-- Dynamic categories -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>&copy; 2025 Imran Shiundu. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/blog.js"></script>
+    <script src="js/dark-mode.js"></script>
+</body>
+</html>
